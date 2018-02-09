@@ -1,0 +1,137 @@
+<!doctype html> <html>
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JAMES - Sprint #35</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				<img data-src="large.png" style="border: 0; background: 0;">
+				<h3>JAMES Team DEMO - Sprint #35</h3>
+				<img data-src="mq.jpg" style="border: 0; background: 0;">
+<p>Message Queue choice</p>
+				</section>
+
+<section>
+<h2>Rationals</h2>
+<p class="fragment">Implementation of a distributed <b>mail queue</b></p>
+<br/>
+<p class="fragment">Complex administration operations:
+<ul>
+  <li class="fragment"> Visualize queue content</li>
+  <li class="fragment"> Remove arbitrary mails</li>
+</ul></p>
+<br/>
+<p class="fragment"><b>RabbitMQ</b> do not allow a straightforward implementation of this</p>
+</section>
+
+
+<section>
+<h2>Approach</h2>
+<ul>
+  <li> Avoid middleware multiplication</li>
+  <li> Not only James uses a message queue.</li>
+  <li> Thus we need <b>to evaluate needs</b></li>
+  <li> Then deduce <b>choice criteria</b></li>
+  <li> <b>Evaluate</b> available message queue solutions</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Team leader meetings</h2>
+<ul>
+  <li> Uses cases: work queue, routing, broadcast (API)</li>
+  <li> Uses for inter-service communication</li>
+  <li> Ask encountered limitations</li>
+  <li> Replay is seen as a cool feature</li>
+</ul>
+</section>
+
+<section>
+<h2>Criteria of choice</h2>
+<ul>
+  <li>we need basic messaging capabilities</li>
+  <li>consistency, at least one semantic, durability</li>
+  <li>as a bonus, advanced management capabilities </li>
+</ul>
+
+<p>Additional criteria:</p>
+
+<ul>
+    <li>maturity of the project</li>
+    <li>community</li>
+    <li>performances, …</li>
+</ul>
+</section>
+
+<section>
+<h2>Advanced proof of concept</h2>
+<img data-src="pocing.png">
+</section>
+
+<section>
+<h2>Conclusions</h2>
+<ul>
+  <li>None of the solutions fully fills James needs.</li>
+  <li><b>RabbitMQ</b> is mature, and is a globally good fit for OpenPaaS</li>
+  <li><b>Kafka</b> adds replay, but brings additional middleware dependencies</li>
+  <li><b>RocketMQ</b> is still too immature.</li>
+  <li><b>Artemis</b> clustering is not a good fit.</li>
+  <li><b>NSQ</b> requires a hack to support replay. No AMQP planned.</li>
+</ul>
+</section>
+
+<section>
+<img data-src="article.png">
+<br/>
+<a href="https://medium.com/linagora-engineering/how-to-choose-a-message-queue-247dde46e66c">Link to the article</a>
+</section>
+
+
+
+				<section>
+					<h1>Thank You!<h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
